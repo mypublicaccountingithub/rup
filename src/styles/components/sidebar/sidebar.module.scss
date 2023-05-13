@@ -1,0 +1,97 @@
+@import "../../scss/tools";
+@import "../../scss/colors";
+
+
+.sidebarBody{
+    @include flexBox(column, space-between);
+    width: 100%;
+    height: 100%;
+
+
+    .logo{
+        height: 10%;
+
+        .logoSelf{
+            font-size: 45px;
+            color: $main-purple;
+        }
+    }
+
+    .itemsContainer{
+        @include flexBox(column, flex-start);
+        height: 80%;
+
+        padding-top: 20px;
+        padding-bottom: 20px;
+
+        .item{
+            color: $main-purple;
+
+            .itemLink{
+                text-decoration: none;
+                color: $main-purple;
+
+                &:active{
+                    color: $light-purple;
+                }
+            }
+
+            .logo{
+                font-size: 35px !important;
+                box-sizing: content-box;
+                height: fit-content;
+            }
+
+            .text{
+                font-size: 14px;
+            }
+        }
+    }
+
+
+    .user{
+        height: 10%;
+        font-size: 35px;
+        color: $main-purple;
+    }
+}
+
+
+@media (max-width:576px) {
+    .sidebarBody{
+        width: 100% !important;
+        height: 100% !important;
+        @include flexBox(row, space-between);
+
+
+        .logo, .user, .itemsContainer{
+            height: fit-content;
+        }
+
+        .logo{
+            .logoSelf{
+                font-size: 30px !important;
+            }
+        }
+
+        .user{
+            font-size: 30px;
+        }
+
+        .itemsContainer{
+            height: 100% !important;
+            @include flexBox();
+            width: 90%;
+
+            .item{
+                @include flexBox();
+
+                .logo{
+                    font-size: 15px !important;
+                    display: none;
+                }
+            }
+        }
+
+    }
+}

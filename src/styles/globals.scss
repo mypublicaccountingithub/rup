@@ -1,0 +1,325 @@
+@tailwind components;
+@tailwind utilities;
+
+@import "../styles/scss/tools";
+@import "../styles/scss/colors";
+
+@font-face {
+  font-family: ProductSans;
+  src: url("../../public/font/ProductSans.ttf");
+}
+
+@font-face {
+  font-family: Inter;
+  src: url("../../public/font/Inter.ttf");
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Inter;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+    background-color: rgb(238, 238, 238);
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: rgb(196, 196, 196);
+    border-radius: 5px;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}
+
+.projects-table {
+  text-transform: capitalize;
+  border-radius: 8px;
+  overflow: hidden;
+
+  .ant-table-thead {
+    tr {
+      th {
+        background-color: $main-purple;
+        color: white;
+        font-weight: 100;
+
+        &::before {
+          // display: none !important;
+          background-color: $light-purple !important;
+        }
+      }
+    }
+  }
+
+  .ant-table-tbody {
+    // border: 1px solid red !important;
+
+    tr {
+      cursor: pointer;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f0f0f0 !important;
+
+      &:hover {
+        td {
+          background-color: #f0f0f0 !important;
+        }
+      }
+    }
+  }
+}
+
+:where(.css-dev-only-do-not-override-if6hil).ant-table-wrapper
+  .ant-table-tbody
+  > tr
+  > th,
+:where(.css-dev-only-do-not-override-if6hil).ant-table-wrapper
+  .ant-table-tbody
+  > tr
+  > td {
+  border-bottom: 1px solid transparent;
+  border-radius: 0px !important;
+}
+
+.badge {
+  @include flexBox();
+  width: fit-content;
+  width: 64px;
+  height: 27px;
+  border-radius: 999px;
+}
+
+.red-badge {
+  background-color: #ffd1d1;
+  color: #f20000;
+  font-weight: 400;
+}
+
+.green-badge {
+  background-color: #c3ffd1;
+  color: #00841d;
+}
+
+.project-phase-progress {
+  margin: auto;
+  width: 100%;
+  right: 0;
+
+  .ant-progress-inner {
+    margin-left: auto;
+    height: 10px;
+
+    .ant-progress-bg {
+      height: 100% !important;
+    }
+  }
+}
+
+.stopIcon {
+  background-color: #f04c4c;
+  color: #f04c4c;
+  font-size: 13px;
+  margin-top: 5px;
+  border-radius: 2px;
+}
+
+.startIcon {
+  fill: #00841d;
+  color: #00841d;
+  font-size: 13px;
+  margin-top: 5px;
+  border-radius: 2px;
+}
+
+.descIcon {
+  color: rgba(0, 0, 0, 0.88);
+  font-size: 18px;
+  margin-top: 2px;
+}
+
+.dates-between-border {
+  width: 25px;
+  height: 2px;
+  background-color: #7e7e7e;
+  margin: auto 15px;
+}
+
+.project-iteration-progress-editable {
+  @include flexBox();
+  width: 150px;
+  margin-left: 20px;
+  height: 10px;
+  border-radius: 5px;
+
+  .ant-slider-rail {
+    border-radius: 5px;
+    height: 10px;
+    overflow: hidden !important;
+  }
+
+  .ant-slider-track {
+    height: 10px;
+  }
+
+  .ant-slider-track {
+    background-color: green !important;
+    border-radius: 5px;
+    height: 10px;
+  }
+
+  .ant-slider-handle {
+    // border-color: $main-purple;
+    margin-bottom: 150px !important;
+
+    &::after {
+      box-shadow: 0 0 0 2px $main-purple;
+    }
+  }
+}
+
+:where(.css-dev-only-do-not-override-yp8pcc).ant-slider
+  .ant-slider-handle:hover::after,
+:where(.css-dev-only-do-not-override-yp8pcc).ant-slider
+  .ant-slider-handle:active::after,
+:where(.css-dev-only-do-not-override-yp8pcc).ant-slider
+  .ant-slider-handle:focus::after {
+  box-shadow: 0 0 0 2px $main-purple;
+}
+
+.form-upload-input {
+  margin-top: 80px;
+  // width: 50%;
+  // width: 400px;
+
+  .ant-upload-list {
+    // width: 400px;
+
+    div.ant-upload {
+      // width: 400px !important;
+      border: 2px dashed black !important;
+
+      &:hover {
+        @include transition();
+        border-color: $main-purple !important;
+        color: $main-purple;
+      }
+    }
+  }
+}
+
+.submit-button {
+  width: 195px;
+  // background-color: #18850f;
+  color: white;
+}
+
+.ant-form {
+  width: 100%;
+
+  .ant-form-item-label {
+    text-align: left;
+  }
+
+  .ant-form-item-control {
+    padding-left: 15px;
+  }
+}
+
+.activitiesList {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.pageHeader {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 25px;
+  gap: 10px;
+}
+
+.backButton {
+  // width: 70px !important;
+  @include flexBox();
+}
+
+.linkWithNextjs {
+  text-decoration: none;
+  color: black;
+  @include transition();
+
+  &:hover {
+    color: $main-purple;
+  }
+}
+
+.ant-form .ant-form-item-control {
+  padding-left: 0 !important;
+}
+
+.ant-modal-content {
+  word-wrap: break-word;
+
+  .ant-modal-body {
+    word-wrap: break-word;
+  }
+}
+
+.artifactOptions {
+  @include flexBox();
+  @include transition(0.2s);
+
+  margin-left: 8px;
+  border: 1px solid black;
+
+  width: 25px !important;
+  height: 25px !important;
+  border-radius: 4px;
+  box-shadow: 0px 0px 5px lightgray;
+
+  &:hover {
+    background-color: $light-purple;
+    border-color: $light-purple;
+    color: $main-purple;
+    box-shadow: unset !important;
+  }
+}
+
+.ant-tree-title {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.ant-tree-switcher-line-icon svg {
+  height: 16px;
+  width: 16px;
+
+  path {
+    color: black;
+  }
+}
+
+.ant-tree-node-content-wrapper {
+    &:hover {
+      background-color: transparent !important;
+      cursor: auto;
+    }
+  }
+
+  span.ant-tree-node-selected {
+    background-color: transparent !important;
+  }
+
+  .ant-tree-node-content-wrapper {
+    color: #5f5f5f !important;
+  }

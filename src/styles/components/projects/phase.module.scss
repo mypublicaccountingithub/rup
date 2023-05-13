@@ -1,0 +1,256 @@
+@import "../../scss/colors";
+@import "../../scss/tools";
+
+.phaseContainer {
+  @include flexBox(column, flex-start);
+  // width: 100 / 4 - 1.75 * 1%;
+  width: 23%;
+  border-radius: 8px;
+  position: relative;
+  background: #ffffff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  padding: 10px;
+  position: relative;
+
+  .phaseHeaderTitle {
+    width: 100%;
+    display: flex;
+
+    .phaseTitle {
+      color: #4b4b4b;
+      font-style: normal;
+      font-size: 16px;
+      text-align: center;
+      margin-right: auto;
+      background-color: white;
+      font-weight: 900;
+      text-transform: capitalize;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: -30px;
+    }
+
+    .phaseTitle::after {
+      content: " ";
+      display: block;
+      height: 14px;
+      width: 14px;
+      position: absolute;
+      right: -20px;
+      top: calc(50% - 7px);
+      transform: translateY(-50%);
+      background-color: #21a700;
+      border-radius: 50%;
+      box-shadow: 0 0 0 0 rgb(0, 138, 30);
+      transform: scale(1);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 rgba(1, 143, 20, 0.7);
+      }
+
+      70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 6px rgba(0, 0, 0, 0);
+      }
+
+      100% {
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+      }
+    }
+
+    .phaseHeader {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+
+      .ITNumber {
+        // position: relative;
+        top: -2px;
+        left: 4px;
+        font-size: 18px;
+        font-weight: 900;
+        display: block;
+        width: calc(100% - 20px);
+        overflow: auto;
+
+
+        &::-webkit-scrollbar {
+          height: 2px;
+        }
+        
+        /* Track */
+        &::-webkit-scrollbar-track {
+          background: $light-purple;
+        }
+        
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+          background: $main-purple;
+        }
+        
+        /* Handle on hover */
+        &::-webkit-scrollbar-thumb:hover {
+          background: #555;
+        }
+      }
+
+      .firstPart{
+        @include flexBox(row, flex-start);
+        flex-wrap: nowrap;
+        width: 75%;
+        height: 25px;
+        overflow-x: hidden;
+      }
+
+      .phasAction {
+        @include flexBox();
+        flex-wrap: wrap;
+        gap: 2px;
+        width: 20%;
+        // background-color: green;
+
+        .addBtn {
+          top: 10px;
+          right: 10px;
+          font-size: 18px;
+          @include transition();
+        }
+
+        .eyeBtn {
+          top: 10px;
+          right: 40px;
+          font-size: 18px;
+          @include transition();
+        }
+
+        .eyeBtnOff {
+          top: 10px;
+          right: 40px;
+          font-size: 18px;
+          @include transition();
+          color: rgb(243, 50, 50);
+        }
+
+        .addBtn:hover,
+        .eyeBtn:hover {
+          cursor: pointer;
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+
+  .firstRow {
+    width: 100%;
+    margin-top: 4px;
+
+    .firstPart {
+      @include flexBox(row, flex-start);
+      width: 30%;
+      height: 100%;
+      margin-left: 5px;
+      font-size: 16px;
+
+      span {
+        @include flexBox();
+        font-weight: 1000;
+        margin-left: 5px;
+        font-size: 14px;
+      }
+    }
+
+    // .secondPart {
+    //   width: fit-content;
+    //   width: 100px;
+    //   height: 100%;
+    //   padding-right: 21px;
+    //   position: relative;
+    //   margin-right: 10px;
+
+    //   @include flexBox(row);
+    // }
+  }
+
+  .secondRow {
+    @include flexBox(row, space-between);
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    height: 30%;
+    margin-top: 5px;
+
+    .firstPart,
+    .secondPart {
+      @include flexBox();
+
+      span {
+        font-size: 14px;
+        font-weight: 400;
+        margin-top: 3px;
+        color: #494949;
+        margin-left: 3px;
+      }
+    }
+  }
+}
+
+
+
+@media (max-width:576px) {
+  .phaseContainer{
+    width: 100%;
+    max-width: 350px;
+    margin-top: 80px;
+
+
+    &:first-child{
+      margin: 0;
+    }
+  }
+}
+@media (min-width:576px) and (max-width:766px) {
+  .phaseContainer{
+    width: 100%;
+    margin-top: 80px;
+    max-width: 350px !important;
+
+    &:first-child{
+      margin: 0;
+    }
+  }
+}
+
+@media (min-width:768px) and (max-width:991px) {
+  .phaseContainer{
+    width: 47%;
+    margin-top: 70px;
+    max-width: 300px !important;
+
+    &:nth-child(1), &:nth-child(2){
+      margin-top: 10px;
+    }
+  }
+}
+@media (min-width:992px) and (max-width:1200px) {
+  .phaseContainer{
+    width: 47%;
+    margin-top: 70px;
+    max-width: 320px !important;
+
+    &:nth-child(1), &:nth-child(2){
+      margin-top: 10px;
+    }
+  }
+}
+@media (min-width:1201px) and (max-width:1600px) {
+}
+@media (min-width:1600px) and (max-width:2000px) {
+}
+@media (min-width:2000px) and (max-width:2500px) {
+}

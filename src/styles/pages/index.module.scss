@@ -1,0 +1,99 @@
+@import "../scss/tools";
+@import "../scss/colors";
+
+
+.indexContainer{
+    @include flexBox();
+    width: 100%;
+    height: 100dvh;
+
+
+    .sidebarContainer{
+        @include flexBox();
+        width: 120px;
+        background-color: white;
+        height: 100%;
+        padding:5px;
+        text-align: center;
+        padding: 25px;
+    }
+
+    .bodyContainer{
+        @include flexBox();
+        width: calc(100% - 120px);
+        height: 100%;
+        background-color: $light-purple;
+        padding: 15px 25px;
+
+
+        .body{
+            width: 100%;
+            height: 100%;
+            max-width: 1200px;
+            border-radius: 8px;
+            background-color: white;
+            overflow: auto;
+
+
+            &::-webkit-scrollbar {
+                width: 5px;
+            }
+              
+              /* Handle */
+            &::-webkit-scrollbar-thumb {
+                background: rgb(196, 196, 196);
+                border-radius: 5px;
+              }
+              
+              /* Handle on hover */
+            &::-webkit-scrollbar-thumb:hover {
+                background: #555;
+            }
+            // padding: 25px;
+        }
+    }
+}
+
+
+
+@media (max-width:576px) {
+    .indexContainer{
+        flex-direction: column;
+        .sidebarContainer{
+            width: 100%;
+            height: 50px;
+            position: sticky;
+            top:0;
+            z-index: 1000;
+            border-bottom: 1px solid $light-purple;
+            padding: 0px 10px !important;
+        }
+
+        .bodyContainer{
+            width: 100%;
+            height: calc(100dvh - 50px);
+            background-color: yellow;
+            padding: 0;
+            
+
+            .body{
+                width: 100%;
+                border-radius: 0; 
+            }
+        }
+    }
+  
+}
+@media (min-width:576px) and (max-width:766px) {
+}
+
+@media (min-width:768px) and (max-width:991px) {
+}
+@media (min-width:992px) and (max-width:1200px) {
+}
+@media (min-width:1201px) and (max-width:1600px) {
+}
+@media (min-width:1600px) and (max-width:2000px) {
+}
+@media (min-width:2000px) and (max-width:2500px) {
+}
