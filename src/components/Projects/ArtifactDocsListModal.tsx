@@ -1,8 +1,8 @@
 import { Modal } from "antd";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
 //  components
-import ArtifactDocs from "./ArtifactDocs";
+import ArtifactDocs from "./ArtifactDocsTable";
 //  acions
 import { changeShowArtifactDocsModal } from "@/redux/slices/app";
 
@@ -10,11 +10,11 @@ function ArtifactDocsListModal(props: any) {
   //  variables
   const { setShowArtifactModal } = props;
   const dispatch = useAppDispatch();
-
   const artifact = 1;
   const project = 1;
-  const pageNumber = 1;
-  const pageSize = 111111;
+
+  //  redux variables
+  const artifactTitle = useAppSelector((state) => state.app.artifactTitle);
 
   return (
     <Modal
@@ -25,7 +25,10 @@ function ArtifactDocsListModal(props: any) {
       width={1200}
       className="mt-5"
     >
-      <h1>All ArtifactDocs List</h1>
+      <div className="flex items-center">
+        <h1>All ArtifactDocs List </h1>
+        <span className="text-lg text-gray-500 ml-5">( {artifactTitle} )</span>
+      </div>
       <ArtifactDocs artifactId={artifact} projectId={project} />
     </Modal>
   );

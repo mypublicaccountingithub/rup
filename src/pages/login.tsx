@@ -50,7 +50,9 @@ function Login() {
       const loginResult = await login({ ...loginObject, ...loginData });
       if (loginResult.status === 200) {
         messageApi.success("Login was successful");
-        cookie.set("token", loginResult?.data?.data?.pToken);
+        cookie.set("token", loginResult?.data?.data?.pToken, {
+          maxAge: 1000 * 60 * 9,
+        });
         router.push("/projects");
       }
     } catch (error: any) {

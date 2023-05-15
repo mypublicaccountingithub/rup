@@ -37,6 +37,8 @@ function Phase(props: phasePropsType) {
   const { data } = props;
   const router = useRouter();
 
+  console.log("dataaaaaaa : ", data);
+
   const startDate = data.iterationsStartDate
     ?.split("T")[0]
     .split("-")
@@ -60,7 +62,10 @@ function Phase(props: phasePropsType) {
 
           <div className={phaseStyle.phasAction}>
             <Link
-              href={`/projects/${router.query.id}/${data.phasesId}/iteration/add`}
+              href={{
+                pathname: `/projects/${router.query.id}/${data.phasesId}/iteration/add`,
+                query: { phasesTitle: data.phasesTitle },
+              }}
               className="linkWithNextjs w-5 flex justify-center items-center"
             >
               <FiPlusSquare className={phaseStyle.addBtn} />
@@ -71,7 +76,6 @@ function Phase(props: phasePropsType) {
                 pathname: `/projects/${router.query.id}`,
                 query: {
                   phase: data.phasesId,
-                  // role: router.query.role,
                 },
               }}
               className="linkWithNextjs w-5 flex justify-center items-center"
@@ -86,10 +90,7 @@ function Phase(props: phasePropsType) {
                   <FiEyeOff className={phaseStyle.eyeBtnOff} />
                 </Link>
               ) : (
-                <FiEye
-                  // onClick={()=>{console.log("")}}
-                  className={phaseStyle.eyeBtn}
-                />
+                <FiEye className={phaseStyle.eyeBtn} />
               )}
             </Link>
           </div>

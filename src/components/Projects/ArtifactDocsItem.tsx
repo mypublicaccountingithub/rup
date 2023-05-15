@@ -24,7 +24,6 @@ function ArtifactDocsItem(props: ArtifactDocsItemType) {
   //  variables
   const { doc } = props;
 
-  console.log("doc : ", doc);
 
   //  states
   const [showSkeleton, setShowSkeleton] = useState(true);

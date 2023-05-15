@@ -39,8 +39,7 @@ const AddIteration = () => {
 
   //  handelrs
   const handleSubmit = async (values: any) => {
-    console.log("values : ", values);
-    // setIsLoading(true);
+    setIsLoading(true);
     const iterationFormData: any = {};
 
     iterationFormData["startDate"] = new Date(values.date[0])
@@ -83,6 +82,8 @@ const AddIteration = () => {
     <Layout tabTitle="Add Iteration" hasPadding={true}>
       {contextHolder}
 
+      <div className="pageHeader"></div>
+
       <div className="pageHeader">
         <Button
           className="backButton"
@@ -92,8 +93,10 @@ const AddIteration = () => {
           size="large"
           icon={<FiArrowLeft fontSize={22} />}
         />
-
         <h1>Add Iteration</h1>
+        <span className="text-lg text-gray-500">
+          ( {router.query.phasesTitle || null} )
+        </span>
       </div>
 
       <Row className="max-sm:mt-12">
@@ -146,12 +149,7 @@ const AddIteration = () => {
             </Form.Item>
 
             <Form.Item name="status" label="status">
-              <Switch
-                defaultChecked
-                onChange={(e) => {
-                  console.log("eee : ", e);
-                }}
-              />
+              <Switch defaultChecked />
             </Form.Item>
 
             <Form.Item

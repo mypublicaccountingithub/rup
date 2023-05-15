@@ -256,6 +256,7 @@
 .linkWithNextjs {
   text-decoration: none;
   color: black;
+  
   @include transition();
 
   &:hover {

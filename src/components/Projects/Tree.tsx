@@ -1,7 +1,7 @@
-import React,{ useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Tree,Slider,Skeleton } from "antd";
+import { Tree, Slider, Skeleton } from "antd";
 import { useAppDispatch } from "@/redux/hooks";
 
 //  icons
@@ -15,10 +15,16 @@ import {
 } from "react-icons/fi";
 import { TbFileDescription } from "react-icons/tb";
 //  actions
-import { changeActivityId,changeShowArtifactDocsModal,changeArifactId } from "@/redux/slices/app";
+import {
+  changeActivityId,
+  changeShowArtifactDocsModal,
+  changeArifactId,
+  changeArtifactTitle,
+} from "@/redux/slices/app";
 
 //  hooks
 import useGetTree from "@/hooks/getTree";
+import { changeActivityTitle } from "@/redux/slices/app";
 //  types & interfaces
 interface TreeItem {
   activityId: number;
@@ -54,10 +60,6 @@ interface PhaseTreePropsType {
   phase: any;
 }
 
-
-//  TODO: set expire time for token in cookie
-
-
 // types & interfaces
 function PhaseTree(props: PhaseTreePropsType) {
   //  variables
@@ -71,7 +73,7 @@ function PhaseTree(props: PhaseTreePropsType) {
   } = props;
 
   //  states
-  const [treeData,setTreeData] = useState([]);
+  const [treeData, setTreeData] = useState([]);
 
   //  hooks
   const treeApiState: RequestType = useGetTree(
@@ -83,10 +85,7 @@ function PhaseTree(props: PhaseTreePropsType) {
 
   //  side effects
   useEffect(() => {
-    console.log("treeApiState : ",treeApiState);
-
-
-    if(!treeApiState.loading && !treeApiState.error) {
+    if (!treeApiState.loading && !treeApiState.error) {
       const treeData: any = {};
 
       treeApiStateData.forEach((item: TreeItem) => {
@@ -103,7 +102,7 @@ function PhaseTree(props: PhaseTreePropsType) {
         {
           /* @ts-ignore */
         }
-        if(!treeData[disciplineId]) {
+        if (!treeData[disciplineId]) {
           {
             /* @ts-ignore */
           }
@@ -118,7 +117,7 @@ function PhaseTree(props: PhaseTreePropsType) {
         {
           /* @ts-ignore */
         }
-        if(!treeData[disciplineId].children[activityId]) {
+        if (!treeData[disciplineId].children[activityId]) {
           {
             /* @ts-ignore */
           }
@@ -130,8 +129,9 @@ function PhaseTree(props: PhaseTreePropsType) {
                 <span
                   className="bg-[#00581f] ml-2 p-1 text-white text-[12px] cursor-pointer rounded font-normal hover:bg-[#009735] transition-all duration-500"
                   onClick={() => {
-                    setShowInputsModal(true);
                     dispatch(changeActivityId(activityId));
+                    dispatch(changeActivityTitle(activityTitle));
+                    setShowInputsModal(true);
                   }}
                 >
                   Inputs
@@ -146,7 +146,9 @@ function PhaseTree(props: PhaseTreePropsType) {
         {
           /* @ts-ignore */
         }
-        if(!treeData[disciplineId].children[activityId].children[artifactsId]) {
+        if (
+          !treeData[disciplineId].children[activityId].children[artifactsId]
+        ) {
           {
             /* @ts-ignore */
           }
@@ -173,8 +175,9 @@ function PhaseTree(props: PhaseTreePropsType) {
                 <div
                   className="artifactOptions cursor-pointer"
                   onClick={() => {
-                    dispatch(changeArifactId(artifactsId))
-                    dispatch(changeShowArtifactDocsModal(true))
+                    dispatch(changeArifactId(artifactsId));
+                    dispatch(changeArtifactTitle(artifactsTitle));
+                    dispatch(changeShowArtifactDocsModal(true));
                   }}
                 >
                   L
@@ -216,6 +219,8 @@ function PhaseTree(props: PhaseTreePropsType) {
         .split("-")
         .join("/");
 
+      // console.log("phase : ", phase);
+
       const finalData: any = [
         {
           title: (
@@ -242,9 +247,7 @@ function PhaseTree(props: PhaseTreePropsType) {
                       position: "relative",
                     }}
                   />
-                  <span className="text-3xl ">
-                    {phase?.iterationsTitle}
-                  </span>
+                  <span className="text-3xl ">{phase?.iterationsTitle}</span>
                 </span>
               </div>
 
@@ -305,11 +308,11 @@ function PhaseTree(props: PhaseTreePropsType) {
       setTreeData(finalData);
     }
     // return result;
-  },[treeApiState]);
+  }, [treeApiState]);
 
   useEffect(() => {
     setTreeData([]);
-  },[router.query.phase,router.query.role]);
+  }, [router.query.phase, router.query.role]);
 
   return (
     <>

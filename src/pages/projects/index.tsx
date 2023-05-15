@@ -120,7 +120,7 @@ function Projects() {
 
   //  side effects
   useEffect(() => {
-    if (requestObject.data) {
+    if (requestObject.data?.length) {
       const modifiedData = requestObject.data.map((item: Item) => {
         return {
           key: item.id,
@@ -148,6 +148,10 @@ function Projects() {
       console.log("noooo");
     }
   }, []);
+
+  useEffect(() => {
+    console.log("data : ", data);
+  }, [data]);
 
   return (
     <Layout tabTitle="Projects" hasPadding={isSmall}>

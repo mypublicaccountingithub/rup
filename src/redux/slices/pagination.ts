@@ -33,20 +33,17 @@ export const paginationSlice = createSlice({
         },
         changeTotalPages: (state, action:PayloadAction<number>)=>{
             state.totalPages = action.payload;
+        },
+        
+        resetePagination: (state, action)=>{
+            return initialState
         }
     }
 })
 
 
 
-export const { changeCurrentPage, changePerPage, changeCount, changeTotalPages } = paginationSlice.actions;
-
-
-//  selectores
-export const selectCurrentPage = (state: RootState) => state.pagination.currentPage;
-export const selectPerPage = (state:RootState) => state.pagination.perPage;
-export const selectCount = (state: RootState) => state.pagination.count;
-export const selectTotalPages = (state: RootState) => state.pagination.totalPages;
+export const { changeCurrentPage, changePerPage, changeCount, changeTotalPages, resetePagination } = paginationSlice.actions;
 
 
 export default paginationSlice.reducer
